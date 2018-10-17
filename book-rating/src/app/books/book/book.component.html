@@ -14,5 +14,16 @@
     <p>
       {{ book.description }}
     </p>
+
+    <button
+      (click)="rateDown()"
+      class="btn btn-secondary mr-2"
+      [disabled]="!rs.rateDownAllowed(book)">😞</button>
+
+    <button
+      (click)="rateUp()"
+      class="btn btn-primary"
+      [disabled]="!rs.rateUpAllowed(book)">😃</button>
+
   </div>
 </div>
