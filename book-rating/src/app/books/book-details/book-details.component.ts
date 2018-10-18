@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'br-book-details',
@@ -9,12 +11,23 @@ import { ActivatedRoute } from '@angular/router';
 export class BookDetailsComponent implements OnInit {
 
   isbn: string;
+  isbn$: Observable<string>;
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params =>
-      this.isbn = params.get('isbn')
-    );
+    this.route.paramMap
+      .subscribe(params =>
+        this.isbn = params.get('isbn')
+      );
+
+    // alternativ
+    this.isbn$ = this.route.paramMap
+      .pipe(
+        map(params => params.get('isbn'))
+      );
+
+
   }
 
 }
