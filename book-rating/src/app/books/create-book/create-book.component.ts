@@ -16,4 +16,25 @@ export class CreateBookComponent {
     title: new FormControl('', Validators.required),
     description: new FormControl('')
   });
+
+  isInvalid(name: string) {
+    const control = this.bookForm.get(name);
+    return control.invalid && control.dirty;
+  }
+
+  hasError(name: string, errorCode: string) {
+    const control = this.bookForm.get(name);
+    return control.hasError(errorCode) && control.dirty;
+  }
+
+  /*
+  hasError2(name: string, errorCode: string) {
+    const control = this.bookForm.get(name);
+    return control.errors[errorCode] && control.dirty;
+  }*/
+
+  submitForm() {
+    // TODO: 1. EventEmitter `created` feuern, mit dem Buch
+    //       2. Buch dem Array hinzufügen (AppComponent)
+  }
 }
